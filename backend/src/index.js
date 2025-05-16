@@ -9,7 +9,7 @@ const app = express();
 
 const PORT = process.env.PORT;
 
-app.use(express.json());
+app.use(express.json()); // Middleware to parse JSON request body
 
 app.use("/api/auth", authRoutes);
 
