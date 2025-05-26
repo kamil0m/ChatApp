@@ -8,7 +8,9 @@ import ProfilePage from './pages/ProfilePage.jsx';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAuthStore } from './store/useAuthStore.jsx';
 import { useEffect } from 'react';
+
 import { Loader } from 'lucide-react';
+import { Toaster } from 'react-hot-toast';
 
 export default function App() {
   const {authUser, checkAuth, isCheckingAuth} = useAuthStore()
@@ -32,12 +34,14 @@ export default function App() {
       <Navbar />
 
       <Routes>
-        <Route path="/" element={authUser ? < HomePage /> : <Navigate to="/login"/>} />
-        <Route path="/signup" element={< SignUpPage />} />
-        <Route path="/login" element={authUser ?  < LoginPage />: <Navigate to="/"/>} />
-        <Route path="/settings" element={< SettingsPage />} />
-        <Route path="/profile" element={authUser ? < ProfilePage /> : <Navigate to="/login"/>} />
+        <Route path="/" element={authUser ? <HomePage /> : <Navigate to="/login" />} />
+        <Route path="/signup" element={!authUser ? <SignUpPage /> : <Navigate to="/" />} />
+        <Route path="/login" element={!authUser ? <LoginPage /> : <Navigate to="/" />} />
+        <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/profile" element={authUser ? <ProfilePage /> : <Navigate to="/login" />} />
       </Routes>
+
+      <Toaster />
 
 
     </div>
