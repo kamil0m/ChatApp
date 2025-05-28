@@ -10,9 +10,9 @@ import toast from 'react-hot-toast';
 export default function SignUpPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    password: ''
+    fullName: 'test user',
+    email: 'test@user.com',
+    password: 'somepassword'
   });
 
   const { signup, isSigningUp } = useAuthStore();
@@ -28,12 +28,13 @@ export default function SignUpPage() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
     const success = validateForm();
 
-    if (success === true) {signup(formData)};
-  }
+    if (success === true) signup(formData);
+  };
+
   return (
     <div className="min-h-screen grid lg:grid-cols-2">
       {/* left side */}
@@ -49,7 +50,7 @@ export default function SignUpPage() {
             </div>
           </div>
           {/* Form */}
-          <form onSubmit="handleSubmit" className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div className="form-control">
               <label htmlFor="" className="label">
                 <span className="label-text font-medium">FullName</span>
