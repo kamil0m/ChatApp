@@ -1,4 +1,4 @@
-import React from 'react'
+import { Users } from "lucide-react";
 
 export default function SidebarSkeleton() {
   // Create 8 skeleton items
