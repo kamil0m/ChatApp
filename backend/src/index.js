@@ -16,7 +16,12 @@ dotenv.config();
 const PORT = process.env.PORT;
 const __dirname = path.resolve();
 
-app.use(express.json()); // Middleware to parse JSON request body
+// app.use(express.json()); // Middleware to parse JSON request body 
+
+app.use(express.json({ limit: '50mb' })); // Parse JSON payloads with a size limit of 50MB
+app.use(express.urlencoded({ limit: '50mb', extended: true })); // Parse URL-encoded data with a size limit of 50MB
+
+
 app.use(cookieParser()); // Middleware to parse cookies
 app.use(cors({
     origin: "http://localhost:5173", // Replace with your frontend URL
