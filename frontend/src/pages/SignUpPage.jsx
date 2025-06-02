@@ -10,9 +10,9 @@ import toast from 'react-hot-toast';
 export default function SignUpPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
-    fullName: 'test user',
-    email: 'test@user.com',
-    password: 'somepassword'
+    fullName: '',
+    email: '',
+    password: ''
   });
 
   const { signup, isSigningUp } = useAuthStore();
